@@ -3,7 +3,18 @@ on:
   pull_request:
     types:
       - opened
+    branches:
+      - master # main
+      - 'dev-*' # dev-new or dev-this-is-new
+      - 'feat/**' # feat/new or feat/new/button
   workflow_dispatch:
+  push:
+    branches:
+      - master # main
+      - 'dev-*' # dev-new or dev-this-is-new
+      - 'feat/**' # feat/new or feat/new/button
+    paths-ignore: # triggers the workflow when the push is on either of the branches and the file changes are not in workflows
+      - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
